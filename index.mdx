@@ -97,28 +97,6 @@ export const themes = [future, syntaxHighlighter];
 
 ---
 
-<div>
-  <img style={{ height: "700px" }} src="./img/headless.gif" />
-</div>
-
-<Notes>
-  <div>- Broma</div>{" "}
-  <em
-    style={{
-      color: "black",
-      background: "yellow",
-      float: "right",
-      padding: "10px"
-    }}
-  >
-    Sigue: Edgar.
-  </em>
-</Notes>
-
-<!-- Credit: https://jobjorisenmarieke.nl/kop-op -->
-
----
-
 # REST API
 
 ### ¿Qué es REST?
@@ -419,9 +397,15 @@ https://jsonapi.org/format/
 
 ---
 
+# [dccr19-gb<br />.netlify.com](https://dccr19-gb.netlify.com)
+
+![](./img/qr.png)
+
+---
+
 # ¿Cómo interactuar?
 
-### CRUD
+### JAVASCRIPT ALL THE THINGS!
 
 <Notes>
   <div>
@@ -429,6 +413,241 @@ https://jsonapi.org/format/
     escribir
   </div>
 </Notes>
+
+---
+
+# REST API
+
+## GET
+
+```js
+const data = await fetch(
+  "https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/signatures",
+  {
+    method: "GET",
+    headers: {
+      Accept: "application/json"
+    }
+  }
+);
+```
+
+<Notes>
+  <div>-</div>{" "}
+</Notes>
+
+---
+
+# REST API
+
+## POST: Body
+
+```js
+const body = {
+  _links: {
+    type: {
+      href:
+        "http://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/rest/type/node/signature"
+    }
+  },
+  type: [
+    {
+      target_id: "signature"
+    }
+  ],
+  title: [
+    {
+      value: "Andreas"
+    }
+  ],
+  field_message: [
+    {
+      value: "Hola Camp!"
+    }
+  ],
+  field_posted_through: [
+    {
+      value: "REST API"
+    }
+  ]
+};
+```
+
+<Notes>
+  <div>-</div>{" "}
+</Notes>
+
+---
+
+# REST API
+
+## POST: Fetch
+
+```js
+fetch(
+  "http://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/node?_format=hal_json",
+  {
+    method: "POST",
+    headers: {
+      Accept: "application/hal+json",
+      "Content-Type": "application/hal+json",
+      Authorization:
+        "Basic RHVtbXfBY2NvdW50OjRyWVFiaVhTTmtaM0NudkdhSkZSNnBibg=="
+    },
+    body: JSON.stringify(body)
+  }
+);
+```
+
+<Notes>
+  <div>-</div>{" "}
+</Notes>
+
+---
+
+# JSON:API
+
+## GET
+
+```js
+fetch(
+  "https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/jsonapi/node/signature",
+  {
+    method: "GET",
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization:
+        "Basic RHVtbXlBY2NvdW50OjRyWVFikVhTTmtaM0NudkdhSkZSNnBibg=="
+    }
+  }
+);
+```
+
+<Notes>
+  <div>-</div>{" "}
+</Notes>
+
+---
+
+# JSON:API
+
+## POST
+
+```js
+fetch(
+  "https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/jsonapi/node/signature",
+  {
+    method: "POST",
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization:
+        "Basic RHVtbXlBY2NvdW50OjRyWVFikVhTTmtaM0NudkdhSkZSNnBibg=="
+    },
+    body: JSON.stringify({
+      data: {
+        type: "node--signature",
+        attributes: {
+          title: "Edgar",
+          field_message: "Is this the real life?",
+          field_posted_through: "JSON API"
+        }
+      }
+    })
+  }
+);
+```
+
+<Notes>
+  <div>-</div>{" "}
+</Notes>
+
+---
+
+# GraphQL
+
+## GET
+
+```js
+query {
+  nodeQuery {
+    count
+    entities {
+      entityType
+      ... on NodeSignature {
+        title
+        fieldMessage
+        fieldPostedThrough
+      }
+    }
+  }
+}
+```
+
+---
+
+# GraphQL
+
+## GET response body
+
+![](./img/graphql-example.png)
+
+---
+
+# GraphQL
+
+## POST: Query
+
+```js
+const query = JSON.stringify({
+  query {
+    mutation {
+      createSignature(
+        input: {
+          title: "Andreas"
+          field_message: "Yo yo what up?"
+          field_posted_through: "GraphQL"}
+      )
+      {
+        entity {
+          entityId
+        }
+        errors
+        violations {
+          path
+          message
+        }
+      }
+    }
+  }
+});
+```
+
+---
+
+# GraphQL
+
+## POST: Fetch
+
+```js
+const data = await fetch(
+  "https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/graphql",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization:
+        "Basic RHVtbXlBY2NvdW50OjRyWVFiaVhTTmtaM0NudkdhSkZSNnBibg=="
+    },
+    body: query
+  }
+);
+```
+
+---
+
+# PHP TIME!
 
 ---
 
@@ -504,115 +723,6 @@ class ExampleResource extends ResourceBase
 
 ---
 
-# REST API
-
-## GET
-
-```js
-const data = await fetch(
-  "https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/signatures",
-  {
-    method: "GET",
-    headers: {
-      Accept: "application/json"
-    }
-  }
-);
-```
-
-<Notes>
-  <div>-</div>{" "}
-</Notes>
-
----
-
-# REST API
-
-## POST: Body
-
-<div>
-  <img style={{ height: "400px" }} src="./img/rest-body.png" />
-</div>
-
-<Notes>
-  <div>-</div>{" "}
-</Notes>
-
----
-
-# REST API
-
-## POST: Fetch
-
-```js
-const data = await fetch(
-  "http://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/node?_format=hal_json",
-  {
-    method: "POST",
-    headers: {
-      Accept: "application/hal+json",
-      "Content-Type": "application/hal+json",
-      Authorization:
-        "Basic RHVtbXfBY2NvdW50OjRyWVFiaVhTTmtaM0NudkdhSkZSNnBibg=="
-    },
-    body: JSON.stringify(body)
-  }
-);
-```
-
-<Notes>
-  <div>-</div>{" "}
-</Notes>
-
----
-
-#JSON:API
-
-## GET
-
-<!-- FALTA -->
-
-<Notes>
-  <div>-</div>{" "}
-</Notes>
-
----
-
-#JSON:API
-
-## POST
-
-```js
-const data = await fetch(
-  "https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/jsonapi/node/signature",
-  {
-    method: "POST",
-    headers: {
-      Accept: "application/vnd.api+json",
-      "Content-Type": "application/vnd.api+json",
-      Authorization:
-        "Basic RHVtbXlBY2NvdW50OjRyWVFikVhTTmtaM0NudkdhSkZSNnBibg=="
-    },
-    body: JSON.stringify({
-      data: {
-        type: "node--signature",
-        attributes: {
-          title: "Edgar",
-          field_message: "Is this the real life?",
-          field_posted_through: "JSON API"
-        }
-      }
-    })
-  }
-);
-```
-
-<Notes>
-  <div>-</div>{" "}
-</Notes>
-
----
-
 # GraphQL
 
 ## Mutation
@@ -623,81 +733,29 @@ https://www.amazeelabs.com/en/journal/extending-graphql-part-3-mutations
 
 ---
 
-# GraphQL
-
-## GET
-
-```js
-```
-
----
-
-# GraphQL
-
-## POST: Query
-
-```js
-const query = JSON.stringify({
-  query: "`"
-        mutation {
-          createSignature(
-            input: {
-              title: "Andreas"
-              field_message: "Yo yo what up?"
-              field_posted_through: "GraphQL"}
-          )
-          {
-            entity {
-              entityId
-            }
-            errors
-            violations {
-              path
-              message
-            }
-          }
-        }
-      "`"
-});
-```
-
----
-
-# GraphQL
-
-## POST: Fetch
-
-```js
-const data = await fetch(
-  "https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/graphql",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization:
-        "Basic RHVtbXlBY2NvdW50OjRyWVFiaVhTTmtaM0NudkdhSkZSNnBibg=="
-    },
-    body: query
-  }
-);
-```
-
----
-
 ![](./img/extra-almost-there.gif)
 
 ---
 
 # ¿Qué NO hacer?
 
-- Esperar que la Documentación sea tan bonita.
-- Esperar que todos los módulos estén listos para Restful services, JSON:API o GraphQL (ejemplo: [Paragraph](https://www.drupal.org/files/issues/2019-06-14/paragraphs-3047678-allow_creation_via_jsonapi-6.patch))
+<div>
+  <img style={{ height: "700px" }} src="./img/headless.gif" />
+</div>
+
+<Notes>
+  <div>- Broma</div>{" "}
+</Notes>
+
+<!-- Credit: https://jobjorisenmarieke.nl/kop-op -->
 
 ---
 
-# [dccr19-gb<br />.netlify.com](https://dccr19-gb.netlify.com)
+# ¿Qué NO hacer?
 
-![](./img/qr.png)
+- Esperar que la Documentación sea tan bonita.
+- Entrarle de lleno a quejarse de JSON:API sin conocer el spec.
+- Esperar que todos los módulos estén listos para Restful services, JSON:API o GraphQL (ejemplo: [Paragraph](https://www.drupal.org/files/issues/2019-06-14/paragraphs-3047678-allow_creation_via_jsonapi-6.patch))
 
 ---
 
