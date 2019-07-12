@@ -1,8 +1,10 @@
 import future from "@mdx-deck/themes/future";
-import highlight from "@mdx-deck/themes/syntax-highlighter-prism";
+import { syntaxHighlighter } from "@mdx-deck/themes/";
 import { Notes } from "mdx-deck";
 
-export const themes = [future, highlight];
+export const themes = [future, syntaxHighlighter];
+
+---
 
 # REST, GraphQL o JSON:API
 
@@ -298,6 +300,13 @@ https://jsonapi.org/format/
   <img style={{ height: "500px" }} src="./img/json-extras-mod.png" />
 </div>
 
+<Notes>
+  <div>- JSON:API Extras permite configurar endpoints por interfaz.</div>{" "}
+  <div>
+    - JSON:API Defaults permite configurar defaults para included y filter.
+  </div>{" "}
+</Notes>
+
 ---
 
 # JSON:API
@@ -362,11 +371,6 @@ https://jsonapi.org/format/
 
 ---
 
-- Reading data
-- Writing data
-
----
-
 # GraphQL
 
 - Que es GraphQL / GraphQL módulo contribuído?
@@ -395,22 +399,54 @@ https://jsonapi.org/format/
 
 ## Creating endpoints
 
-```php
-echo "Insertar código";
-```
+<div>
+  <img style={{ height: "300px" }} src="./img/rest-resource-location.png" />
+</div>
 
 <Notes>
-  <div>Añadir código</div>
+  <div>Zoom out to 33% for the next slide</div>
 </Notes>
 
 ---
 
 # REST API
 
-##
+## Creating endpoints
+
+```php
+
+namespace Drupal\example_endpoint\Plugin\rest\resource;
+
+use Drupal\rest\Plugin\ResourceBase;
+use Drupal\rest\ResourceResponse;
+
+/**
+ * Provides an example Resource for DCCR 2019.
+ *
+ * @RestResource(
+ *   id = "example_resource",
+ *   label = @Translation("Example Resource"),
+ *   uri_paths = {
+ *     "canonical" = "/example_rest_api/example_resource"
+ *   }
+ * )
+ */
+class ExampleResource extends ResourceBase
+{
+  /**
+   * Responds to entity GET requests.
+   * @return \Drupal\rest\ResourceResponse
+   */
+  public function get()
+  {
+    $response = ['message' => 'Drupal no está tan mal como la gente dice.'];
+    return new ResourceResponse($response);
+  }
+}
+```
 
 <Notes>
-  <div>aaa</div>
+  <div>-</div>
 </Notes>
 
 ---
@@ -435,20 +471,21 @@ echo "Insertar código";
 
 # TL;DR:s ACCORDING TO DOCS.
 
-**Choose REST if you have non-entity data you want to expose. In all other cases, choose JSON:API.**
+**Elija rest, si tiene datos no parte de una entidad, en caso contrario, dele con JSON:API**
 
 ---
 
-# Módulos de interés
+# Links de interés
 
 - https://dri.es/headless-cms-rest-vs-jsonapi-vs-graphql
 - https://goodapi.co/blog/rest-vs-graphql
+- https://www.drupal.org/docs/8/api/restful-web-services-api/custom-rest-resources
 
 ---
 
-```js
-console.log(x);
-```
+# Link a la presentación
+
+## dccr19-deck.netlify.com
 
 ---
 
