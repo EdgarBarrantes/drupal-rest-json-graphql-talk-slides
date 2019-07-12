@@ -104,8 +104,7 @@ export const themes = [future, syntaxHighlighter];
 </div>
 
 <Notes>
-  <div>- Broma</div>
-  <br />
+  <div>- Broma</div>{" "}
   <em
     style={{
       color: "black",
@@ -317,6 +316,10 @@ https://jsonapi.org/format/
   <img style={{ height: "300px" }} src="./img/json-module.png" />
 </div>
 
+<Notes>
+  <div>- Setting de seguridad recién añadido</div>{" "}
+</Notes>
+
 ---
 
 # JSON:API
@@ -326,6 +329,10 @@ https://jsonapi.org/format/
 <div>
   <img style={{ height: "400px" }} src="./img/json-extras.png" />
 </div>
+
+<Notes>
+  <div>- Permite cambiar prefix</div> <div>- Añadir un counter</div>{" "}
+</Notes>
 
 ---
 
@@ -337,6 +344,14 @@ https://jsonapi.org/format/
   <img style={{ height: "400px" }} src="./img/json-endpoints.png" />
 </div>
 
+<Notes>
+  <div>
+    - JSON:API Extras permite modificar los campos por default que se van a
+    enviar
+  </div>{" "}
+  <div>- JSON:API Deja todos los endpoints expuestos por default</div>{" "}
+</Notes>
+
 ---
 
 # JSON:API
@@ -344,10 +359,10 @@ https://jsonapi.org/format/
 ## Eficiencia
 
 <Notes>
-  <div>- Excelente.</div>
+  <div>- Excelente.</div>{" "}
   <div>
     - Una solicitud es usualmente suficiente para la mayoría de las necesidades.
-  </div>
+  </div>{" "}
   <div>
     - Las respuestas pueden ser configuradas para retornar únicamente lo que se
     require.
@@ -373,12 +388,36 @@ https://jsonapi.org/format/
 
 # GraphQL
 
-- Que es GraphQL / GraphQL módulo contribuído?
-- Efficiency
-- Documentation, API Explorability and Schema
-- Reading data
-- Writing data
-- GraphiQL? Explorer?
+### ¿Qué es GraphQL? ¿Y GraphQL el módulo contribuído?
+
+<Notes>.</Notes>
+
+---
+
+# GraphQL
+
+## Eficiencia
+
+<Notes>
+  <div>- Excelente</div> <div>Un single request es generalmente suficiente</div>{" "}
+  <div>La respuestas incluyen exactamente sólo lo que se pidió</div>
+</Notes>
+
+---
+
+# GraphQL
+
+- Documentación, explorabilidad, y schema
+
+<!-- Meterle imágen de Explorer/Voyager -->
+
+<Notes>
+  <div>- La documentación es excelente</div>{" "}
+  <div>- Es increíblemente explorable</div> <div>- El schema es preciso</div>{" "}
+  <div>- Además, incluye herramientas geniales como voyager y explorer</div>{" "}
+  <div>- Voyager permite ver todo el schema de forma visualmente agradable</div>{" "}
+  <div>- Explorer permite hacer requests desde el mismo drupals</div>{" "}
+</Notes>
 
 ---
 
@@ -446,20 +485,215 @@ class ExampleResource extends ResourceBase
 ```
 
 <Notes>
-  <div>-</div>
+  <div>- Esto es un anotation based plugin</div>
 </Notes>
 
 ---
 
-# Views REST export?
+# REST API
+
+## Views REST export
+
+<div>
+  <img style={{ height: "400px" }} src="./img/rest-view.png" />
+</div>
+
+<Notes>
+  <div>- Implican que el llamado llame haga un query de la base de datos</div>{" "}
+  <div>- No olvidar configurar cómo tiene que ir serializado</div>{" "}
+  <div>- Reducir la próxima diapositiva a 67%</div>{" "}
+</Notes>
+
+---
+
+# REST API
+
+## GET
+
+```js
+const data = await fetch(
+  "https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/signatures",
+  {
+    method: "GET",
+    headers: {
+      Accept: "application/json"
+    }
+  }
+);
+```
+
+<Notes>
+  <div>-</div>{" "}
+</Notes>
+
+---
+
+# REST API
+
+## POST: Body
+
+<div>
+  <img style={{ height: "400px" }} src="./img/rest-body.png" />
+</div>
+
+<Notes>
+  <div>-</div>{" "}
+</Notes>
+
+---
+
+# REST API
+
+## POST: Fetch
+
+```js
+const data = await fetch(
+  "http://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/node?_format=hal_json",
+  {
+    method: "POST",
+    headers: {
+      Accept: "application/hal+json",
+      "Content-Type": "application/hal+json",
+      Authorization:
+        "Basic RHVtbXfBY2NvdW50OjRyWVFiaVhTTmtaM0NudkdhSkZSNnBibg=="
+    },
+    body: JSON.stringify(body)
+  }
+);
+```
+
+<Notes>
+  <div>-</div>{" "}
+</Notes>
+
+---
+
+#JSON:API
+
+## GET
+
+<!-- FALTA -->
+
+<Notes>
+  <div>-</div>{" "}
+</Notes>
+
+---
+
+#JSON:API
+
+## POST
+
+```js
+const data = await fetch(
+  "https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/jsonapi/node/signature",
+  {
+    method: "POST",
+    headers: {
+      Accept: "application/vnd.api+json",
+      "Content-Type": "application/vnd.api+json",
+      Authorization:
+        "Basic RHVtbXlBY2NvdW50OjRyWVFikVhTTmtaM0NudkdhSkZSNnBibg=="
+    },
+    body: JSON.stringify({
+      data: {
+        type: "node--signature",
+        attributes: {
+          title: "Edgar",
+          field_message: "Is this the real life?",
+          field_posted_through: "JSON API"
+        }
+      }
+    })
+  }
+);
+```
+
+<Notes>
+  <div>-</div>{" "}
+</Notes>
+
+---
+
+# GraphQL
+
+## Mutation
+
+https://www.amazeelabs.com/en/journal/extending-graphql-part-3-mutations
+
+(Código ejemplo en repositorio de charla)
+
+---
+
+# GraphQL
+
+## GET
+
+```js
+```
+
+---
+
+# GraphQL
+
+## POST: Query
+
+```js
+const query = JSON.stringify({
+  query: "`"
+        mutation {
+          createSignature(
+            input: {
+              title: "Andreas"
+              field_message: "Yo yo what up?"
+              field_posted_through: "GraphQL"}
+          )
+          {
+            entity {
+              entityId
+            }
+            errors
+            violations {
+              path
+              message
+            }
+          }
+        }
+      "`"
+});
+```
+
+---
+
+# GraphQL
+
+## POST: Fetch
+
+```js
+const data = await fetch(
+  "https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/graphql",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization:
+        "Basic RHVtbXlBY2NvdW50OjRyWVFiaVhTTmtaM0NudkdhSkZSNnBibg=="
+    },
+    body: query
+  }
+);
+```
+
+---
+
+![](./img/extra-almost-there.gif)
 
 ---
 
 # ¿Qué NO hacer?
 
-- Documentacion pobre para requerimientos especificos
-- No todos los modulos estan preparados para ser expuestos por rest o json (ejemplo Paragraph)
-- Que mas?
+- Esperar que la Documentación sea tan bonita.
+- Esperar que todos los módulos estén listos para Restful services, JSON:API o GraphQL (ejemplo: [Paragraph](https://www.drupal.org/files/issues/2019-06-14/paragraphs-3047678-allow_creation_via_jsonapi-6.patch))
 
 ---
 
@@ -469,9 +703,12 @@ class ExampleResource extends ResourceBase
 
 ---
 
-# TL;DR:s ACCORDING TO DOCS.
+# TL;DR:
 
-**Elija rest, si tiene datos no parte de una entidad, en caso contrario, dele con JSON:API**
+**Si usa datos que están guardados en entidades de drupal, use JSON:API**
+**De lo contrario, use Restful Services**
+
+<Notes>Poor GraphQL</Notes>
 
 ---
 
@@ -480,6 +717,7 @@ class ExampleResource extends ResourceBase
 - https://dri.es/headless-cms-rest-vs-jsonapi-vs-graphql
 - https://goodapi.co/blog/rest-vs-graphql
 - https://www.drupal.org/docs/8/api/restful-web-services-api/custom-rest-resources
+- https://www.amazeelabs.com/en/journal/extending-graphql-part-3-mutations
 
 ---
 
@@ -489,4 +727,6 @@ class ExampleResource extends ResourceBase
 
 ---
 
-# The end
+# ¡Gracias totales!
+
+![](./img/extra-gracias.gif)
