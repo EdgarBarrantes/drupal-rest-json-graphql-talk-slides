@@ -12,6 +12,24 @@ export const themes = [future, syntaxHighlighter];
   <sup>https://dccr19-deck.netlify.com</sup>
 </sub>
 
+<Notes>
+  <div>- Primero vamos a introducir el tema hablando sobre la tendencia a desacoplar el frente del backend</div>{" "}
+  <div>- Luego, uno por uno, vamos a describir que es REST API, JSON:API y GraphQL y sus implementaciones en Drupal</div>{" "}
+  <div>- Mostraremos una aplicacion desarrollada para esta charla que interactua con cada uno de los APIs</div>{" "}
+  <div>- Vamos a mostrar como interactuar con cada uno de estos APIs</div>{" "}
+  <div>- Finalizaremos con algunos consejos sobre que no hacer, considerando tambien nuestra experiencia en proyectos Drupal desacoplados</div>{" "}
+  <em
+      style={{
+        color: "black",
+        background: "yellow",
+        float: "right",
+        padding: "10px"
+      }}
+    >
+    Sigue: Andreas.
+  </em>
+</Notes>
+
 ---
 
 # ¿Por qué hablar de esto?
@@ -75,7 +93,16 @@ export const themes = [future, syntaxHighlighter];
 <div style={{ textTransform: "lowercase" }}>@andreaslorozco</div>
 
 <Notes>
-
+  <em
+      style={{
+        color: "black",
+        background: "yellow",
+        float: "right",
+        padding: "10px"
+      }}
+    >
+    Sigue: Edgar.
+  </em>
 </Notes>
 
 ---
@@ -202,6 +229,16 @@ export const themes = [future, syntaxHighlighter];
 
 <Notes>
   <div>- Pobre, no es explorable, no hay schema</div>
+  <em
+    style={{
+      color: "black",
+      background: "yellow",
+      float: "right",
+      padding: "10px"
+    }}
+  >
+    Sigue: Andreas.
+  </em>
 </Notes>
 
 ---
@@ -375,7 +412,13 @@ https://jsonapi.org/format/
 
 ### ¿Qué es GraphQL? ¿Y GraphQL el módulo contribuído?
 
-<Notes>.</Notes>
+<Notes>
+  <div>- Es un query de lenguaje para APIs, un lenguaje de consultas.</div>
+  <div>- No esta ligado a una base de datos, ni un lenguaje de programacion especifico.</div>
+  <div>- Mas bien, esta soportado por el codigo existente y su informacion.</div>
+  <div>- A diferencia de REST (un recurso por endpoint), mediante GraphQL se interactua con solo un endpoint y nuestro "query" es el que la informacion a retornar.</div>
+  <div>- Conceptos: Queries y mutations.</div>
+</Notes>
 
 ---
 
@@ -402,6 +445,16 @@ https://jsonapi.org/format/
   <div>- Además, incluye herramientas geniales como voyager y explorer</div>{" "}
   <div>- Voyager permite ver todo el schema de forma visualmente agradable</div>{" "}
   <div>- Explorer permite hacer requests desde el mismo drupals</div>{" "}
+  <em
+    style={{
+      color: "black",
+      background: "yellow",
+      float: "right",
+      padding: "10px"
+    }}
+  >
+    Sigue: Andreas.
+  </em>
 </Notes>
 
 ---
@@ -507,6 +560,16 @@ fetch(
 
 <Notes>
   <div>-</div>{" "}
+  <em
+    style={{
+      color: "black",
+      background: "yellow",
+      float: "right",
+      padding: "10px"
+    }}
+  >
+    Sigue: Andreas.
+  </em>
 </Notes>
 
 ---
@@ -646,6 +709,18 @@ fetch("https://dev-dc2019-rest-jsonapi-graphql.pantheonsite.io/graphql", {
   body: query
 });
 ```
+<Notes>
+  <em
+    style={{
+      color: "black",
+      background: "yellow",
+      float: "right",
+      padding: "10px"
+    }}
+  >
+  Sigue: Edgar.
+  </em>
+</Notes>
 
 ---
 
@@ -709,7 +784,17 @@ class ExampleResource extends ResourceBase
 
 ---
 
-# REST API
+# GraphQL
+
+## Mutation
+
+https://www.amazeelabs.com/en/journal/extending-graphql-part-3-mutations
+
+(Código ejemplo en repositorio de charla)
+
+---
+
+# EXTRA
 
 ## Views REST export
 
@@ -725,17 +810,19 @@ class ExampleResource extends ResourceBase
 
 ---
 
-# GraphQL
-
-## Mutation
-
-https://www.amazeelabs.com/en/journal/extending-graphql-part-3-mutations
-
-(Código ejemplo en repositorio de charla)
-
----
-
 ![](./img/extra-almost-there.gif)
+<Notes>
+  <em
+    style={{
+      color: "black",
+      background: "yellow",
+      float: "right",
+      padding: "10px"
+    }}
+  >
+  Sigue: Andreas.
+  </em>
+</Notes>
 
 ---
 
@@ -766,7 +853,14 @@ https://www.amazeelabs.com/en/journal/extending-graphql-part-3-mutations
 **Si usa datos que están guardados en entidades de drupal, use JSON:API**
 **De lo contrario, use Restful Services**
 
-<Notes>Poor GraphQL</Notes>
+<Notes>
+  <div>- Poor GraphQL</div>{" "}
+  <div>- Esto no significa que no se deba usar GraphQL en proyectos.</div>{" "}
+  <div>- Un buen caso de uso para GraphQL es tener un equipo dev acostumbrado a interactuar con APIs GraphQL.</div>{" "}
+  <div>- Que ademas tengan algun conocimiento de PHP para cumplir requerimientos de mutations.</div>{" "}
+  <div>- Sin embargo, aun no estan estandarizadas todas las formas de interactuar con APIs de GraphQL.</div>{" "}
+</Notes>
+
 
 ---
 
