@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "mdx-deck index.mdx",
-    "build": "mdx-deck build index.mdx",
+    "build": "mdx-deck build index.mdx; cp -rf img dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
